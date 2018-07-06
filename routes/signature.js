@@ -12,7 +12,7 @@ router.post('/verify', function(req, res, next) {
   var ethereumAddress = req.body.ethereumAddress;
   var message = req.body.message;
   var signature = req.body.signature;
-  console.log(web3.sha3(message));
+ // console.log(web3.sha3(message));
   if (!ethereumAddress) {
     res.render('verifySignature', { result: { error: "Invalid Ethereum Address"}, message: message, signature: signature, ethereumAddress: ethereumAddress });
     return;
@@ -33,7 +33,7 @@ router.post('/verify', function(req, res, next) {
               var m = utils.toBuffer(web3.sha3('\x19Ethereum Signed Message:\n' + message.length + message));
               var pub = utils.ecrecover(m, v, r, s)
               var adr = '0x' + utils.pubToAddress(pub).toString('hex');
-              console.log(adr);
+             // console.log(adr);
     if (ethereumAddress === adr) {
       res.render('verifySignature', { result: { ok: "Signature is valid!"}, message: message, signature: signature, ethereumAddress: ethereumAddress });
       return;
